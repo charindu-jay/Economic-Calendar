@@ -1,0 +1,30 @@
+name: Update Googlesheet
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    
+
+jobs:
+  update_sheet:
+    runs-on: ubuntu-latest
+
+    env: 
+      GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          ptython-version: "3.12.3"
+          cache: "pip"
+
+      - name: Install dependancies
+        run: pip install -r requirments.txt
+
+      - name: Run script
+        run: python main.py
+
+  
