@@ -8,7 +8,8 @@ import os
 
 cred_dict = json.loads(os.environ["GOOGLE_CREDENTIALS"])
 
-print(cred_dict)
+if not cred_dict:
+    raise RuntimeError("GOOGLE_CREDENTIALS secret is missing")
 
 scopes = [ "https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
 
