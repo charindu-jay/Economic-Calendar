@@ -10,9 +10,6 @@ jobs:
   update_sheet:
     runs-on: ubuntu-latest
 
-    env: 
-      GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
-
     steps:
       - uses: actions/checkout@v4
 
@@ -25,6 +22,8 @@ jobs:
         run: pip install -r requirments.txt
 
       - name: Run script
+        env: 
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         run: python main.py
 
   
